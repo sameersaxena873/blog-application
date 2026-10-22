@@ -1,1 +1,1 @@
-# bliog-application
+# blog-application
