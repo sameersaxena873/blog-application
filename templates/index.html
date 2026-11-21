@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>Notes from the desk</h1>
+  <p>Short writing on whatever is on our minds this week.</p>
+</section>
+
+{% if posts %}
+  <ul class="post-list">
+    {% for post in posts %}
+      <li class="post-card">
+        <a class="post-title" href="{{ url_for('show_post', post_id=post['id']) }}">{{ post['title'] }}</a>
+        <p class="meta">{{ post['username'] }} &middot; {{ post['created_at'][:10] }}</p>
+        <p class="excerpt">{{ post['content']|truncate(220) }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="empty">No posts yet. <a href="{{ url_for('new_post') }}">Write the first one.</a></p>
+{% endif %}
+{% endblock %}
